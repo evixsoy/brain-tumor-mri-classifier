@@ -1,0 +1,7 @@
+venv/
+linux/
+dataset/
+dataset - Copy/
+dataset_split/
+*.keras
+*.jpg
