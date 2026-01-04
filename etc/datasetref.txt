@@ -1,0 +1,6 @@
+https://www.kaggle.com/datasets/masoudnickparvar/brain-tumor-mri-dataset
+https://www.kaggle.com/datasets/sartajbhuvaji/brain-tumor-classification-mri
+
+seg
+https://www.kaggle.com/datasets/indk214/brain-tumor-dataset-segmentation-and-classification
+https://www.kaggle.com/datasets/atikaakter11/brain-tumor-segmentation-dataset

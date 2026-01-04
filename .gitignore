@@ -1,7 +1,8 @@
 venv/
 linux/
-dataset/
-dataset - Copy/
-dataset_split/
+dataset-classification/
+dataset-classification-Copy/
+dataset_split_classification/
+backup-dataset_classification/
 *.keras
 *.jpg
