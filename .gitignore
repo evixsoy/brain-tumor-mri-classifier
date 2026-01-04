@@ -4,5 +4,6 @@ dataset-classification/
 dataset-classification-Copy/
 dataset_split_classification/
 backup-dataset_classification/
+*.npy
 *.keras
 *.jpg
