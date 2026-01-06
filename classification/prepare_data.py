@@ -1,13 +1,15 @@
+
+ 
 #check for duplicate pictures
 import os
 import hashlib
 
 hashes = {}
 
-for type_folder in os.listdir('dataset'):
-    for tumor_folder in os.listdir(f'dataset/{type_folder}'):
-        for file in os.listdir(f'dataset/{type_folder}/{tumor_folder}'):
-            filepath = f'dataset/{type_folder}/{tumor_folder}/{file}'
+for type_folder in os.listdir('dataset-classification'):
+    for tumor_folder in os.listdir(f'classification/{type_folder}'):
+        for file in os.listdir(f'classification/{type_folder}/{tumor_folder}'):
+            filepath = f'classification/{type_folder}/{tumor_folder}/{file}'
             with open(filepath, 'rb') as f:
                 file_hash = hashlib.md5(f.read()).hexdigest()
                 if file_hash not in hashes:
@@ -22,6 +24,8 @@ for file_hash, path_list in hashes.items():
         os.remove(to_delete)
 print(count)
 
+
+ 
 #count dataset images
 def count_images(path: str)-> str:
     result = {}
@@ -36,27 +40,27 @@ def count_images(path: str)-> str:
 
     for i in result.keys():
         print(f'{i}: {result[i]}')
-count_images('dataset')
-
+count_images('dataset-classification')
 #with duplicates:
 # Testing: [['glioma_tumor', 400], ['meningioma_tumor', 421], ['no_tumor', 510], ['pituitary_tumor', 374]]
 # Training: [['glioma_tumor', 2147], ['meningioma_tumor', 2161], ['no_tumor', 1990], ['pituitary_tumor', 2284]]
 # Testing count: 1705
 # Training count: 8582
 
+ 
 #merge testing and training folders (unmerged from original dataset)
 import shutil
-if os.path.exists(f'dataset/Testing'):
-    for tumor_folder in os.listdir(f'dataset/Testing'):
-        for file in os.listdir(f'dataset/Testing/{tumor_folder}'):
-            shutil.move(f'dataset/Testing/{tumor_folder}/{file}', f'dataset/Training/{tumor_folder}/{file}')
-    shutil.rmtree('dataset/Testing')
+if os.path.exists(f'dataset-classification/Testing'):
+    for tumor_folder in os.listdir(f'dataset-classification/Testing'):
+        for file in os.listdir(f'dataset-classification/Testing/{tumor_folder}'):
+            shutil.move(f'dataset-classification/Testing/{tumor_folder}/{file}', f'dataset-classification/Training/{tumor_folder}/{file}')
+    shutil.rmtree('dataset-classification/Testing')
 
 #split testing folder into testing,validation folders
 import splitfolders
 
-input_folder = os.path.join('dataset/Training')
-output_folder = os.path.join('dataset_split')
+input_folder = os.path.join('dataset-classification/Training')
+output_folder = os.path.join('dataset_split_classification')
 split_ratio = (0.7,0.15,0.15)
 
 splitfolders.ratio(
@@ -67,8 +71,10 @@ splitfolders.ratio(
     group_prefix= None
 )
 
-count_images('dataset_split')
+ 
+count_images('dataset_split_classification')
 
+ 
 #balance dataset
 import random
 balanced_values = {
@@ -76,14 +82,15 @@ balanced_values = {
     'val' : 245,
     'test' : 256
 }
-for type_folder in os.listdir('dataset_split'):
-    for tumor_folder in os.listdir(f'dataset_split/{type_folder}'):
-        while len(os.listdir(f'dataset_split/{type_folder}/{tumor_folder}')) > balanced_values[type_folder]:
-                files = os.listdir(f'dataset_split/{type_folder}/{tumor_folder}')
-                os.remove(f'dataset_split/{type_folder}/{tumor_folder}/{random.choice(files)}')
+for type_folder in os.listdir('dataset_split_classification'):
+    for tumor_folder in os.listdir(f'dataset_split_classification/{type_folder}'):
+        while len(os.listdir(f'dataset_split_classification/{type_folder}/{tumor_folder}')) > balanced_values[type_folder]:
+                files = os.listdir(f'dataset_split_classification/{type_folder}/{tumor_folder}')
+                os.remove(f'dataset_split_classification/{type_folder}/{tumor_folder}/{random.choice(files)}')
 
 #todo pridat ze cisla balanced_values neni hardcoded ale vytahne to nejnizsi cislo souboru ve slozce + celkove vsechny path nebudou tak hardcoded napr dataset_split/
 
-count_images('dataset_split')
+ 
+count_images('dataset_split_classification')
 
 

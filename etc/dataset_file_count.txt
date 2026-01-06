@@ -1,7 +1,7 @@
 seg: https://www.kaggle.com/datasets/atikaakter11/brain-tumor-segmentation-dataset
     images:
-        glioma: 649
-        meningioma: 999
+        glioma: 649 ?
+        meningioma: 999 ?
         pituitary: 994
     masks:
         glioma: 650 ? 
@@ -11,22 +11,20 @@ seg: https://www.kaggle.com/datasets/atikaakter11/brain-tumor-segmentation-datas
 seg: https://www.kaggle.com/datasets/indk214/brain-tumor-dataset-segmentation-and-classification
     tento dataset ma v jedne slozce jak image tak i masks -> budu pocitat s tim ze to je even
     images:
-        no tumor: 0
-        glioma: 754
+        glioma: 554
         meningioma: 708
         pituitary: 930
     masks:
-        no tumor: 0
-        glioma: 754
+        glioma: 554
         meningioma: 708
         pituitary: 930
 
 
 seg: =  images:
-            glioma: 1403
+            glioma: 1203
             meningioma: 1707
             pituitary: 1924
         masks:
-            glioma: 1404 ?
+            glioma: 1204 ?
             meningioma: 1708 ? 
             pituitary: 1924
