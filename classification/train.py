@@ -7,8 +7,8 @@ if gpus:
         tf.config.experimental.set_memory_growth(gpu, True) 
 tf.keras.mixed_precision.set_global_policy('mixed_float16')
 
-from tensorflow.keras.preprocessing.image import ImageDataGenerator
-from tensorflow.keras.applications.resnet50 import preprocess_input
+from keras.preprocessing.image import ImageDataGenerator
+from keras.applications.resnet50 import preprocess_input
 
 #preparing images for resnet50
 train_datagen = ImageDataGenerator(
@@ -63,9 +63,9 @@ base_model = ResNet50(weights='imagenet', include_top=False, input_shape=(image_
 
 base_model.trainable= False
 
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout, Input
-from tensorflow.keras import layers, models
+from keras.models import Sequential
+from keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout, Input
+from keras import layers, models
 
 model = models.Sequential([
     base_model,
@@ -77,7 +77,7 @@ model = models.Sequential([
 
 model.compile(optimizer='adam',loss='categorical_crossentropy',metrics=['accuracy'])
 
-from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint, ReduceLROnPlateau, CSVLogger
+from keras.callbacks import EarlyStopping, ModelCheckpoint, ReduceLROnPlateau, CSVLogger
 
 callbacks = [
     EarlyStopping(

@@ -9,3 +9,7 @@ cleaned_dataset/
 *.npy
 *.keras
 *.jpg
+segmentation/__pycache__/*
+segmentation/logs/*
+#temp
+training_tumor_segmentation.csv
